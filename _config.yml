@@ -1,11 +1,11 @@
 # Site settings
 author: Braydon Janecek
-title: 
+title: Braydon Janecek's Professional Blog
 header-img: img/home-bg.png
 email: braydoncharlesjanecek@gmail.com
 copyright_name: Braydon Janecek
 description: > # this means to ignore newlines until "baseurl:"
-  
+  Data Science Explored
 baseurl: "" # the subpath of your site, e.g. /blog
 twitter_username: 
 github_username:  bcjanecek
