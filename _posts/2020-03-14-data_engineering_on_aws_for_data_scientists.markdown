@@ -1,7 +1,7 @@
 ---
 layout: post
 title:      "Data Engineering on AWS for Data Scientists"
-date:       2020-03-14 22:34:54 +0000
+date:       2020-03-14 18:34:55 -0400
 permalink:  data_engineering_on_aws_for_data_scientists
 ---
 
@@ -23,7 +23,12 @@ Regarding security, S3 offers multiple encryption options for objects ranging fr
 ## Amazon Kinesis
 Amazon Kinesis is AWS's answer to Apache Kafka and allows real-time "big data" analytics. Four services exist under the Kinesis umbrella - Kinesis Stream, Kinesis Analytics, Kinesis Firehose, and Kinesis Video Streams. The Kinesis architecture begins with incoming data (IoT, clickstreams, etc.) being unboarded into Kinesis Stream. Following this we may wish to perform real-time analytics on the data which is where Kinesis Analytics comes into play. Finally, Kinesis Firehose's purpose is to transfer data from Analytics to S3 buckets and / or Amazon Redshift (data warehouse) for deeper analytics or reporting. 
 
-These are just two of many data engineering tools available on AWS. We will continue to return to machine learning using AWS in future blog posts. 
+## AWS Glue 
+
+AWS Glue is an Extract Transform Load (ETL) application which contains crawlers capable of combing through massive amounts of structured and unstructured data (such as in an S3 data lake) and cataloging that metadata into a central directory. The crawlers work through your data, either on a schedule or on demand, and determine data schemas and partitions. Once all of your metadata is in the central repository it may be used  when querying from other applications like AWS Athena or Amazon Redshift. 
+
+
+These are just a few of many data engineering tools available on AWS. We will continue to return to machine learning using AWS in future blog posts. 
 
 
 References:
