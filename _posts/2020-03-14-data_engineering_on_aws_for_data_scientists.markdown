@@ -27,6 +27,8 @@ Amazon Kinesis is AWS's answer to Apache Kafka and allows real-time "big data" a
 
 AWS Glue is an Extract Transform Load (ETL) application which contains crawlers capable of combing through massive amounts of structured and unstructured data (such as in an S3 data lake) and cataloging that metadata into a central directory. The crawlers work through your data, either on a schedule or on demand, and determine data schemas and partitions. Once all of your metadata is in the central repository it may be used  when querying from other applications like AWS Athena or Amazon Redshift. 
 
+Glue ETL allows you to write ETL code using either Scala or Python. Glue ETL also allows you to run jobs on a serverless Spark platform making it so you don't need to worry about how to run you Spark cluster. 
+
 
 These are just a few of many data engineering tools available on AWS. We will continue to return to machine learning using AWS in future blog posts. 
 
