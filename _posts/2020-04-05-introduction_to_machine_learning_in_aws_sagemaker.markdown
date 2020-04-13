@@ -26,10 +26,23 @@ Linear Learner accepts data in either a RecordIO-wrapped Protobuf (float32) or r
 Linear Learner is farily sophisticated for being a "simple" machine learning model. By using stochastic gradient descent (SGD) it can train large datasets much more quickly. Linear Learner has multiple optimization algorithm options to choose from including Adam and AdaGrad. When training commences, multiple models are trained in parallel and the algorithm chooses the best model during the validation phase. Of course, L1 (Lasso) and L2 (Ridge) regularization options are available to avoid overfitting and/or conduct feature selection. 
 
 ## XGBoost
+AWS XGBoost makes use of the currently widely popular and effective eXtreme Gradient Boosting algorithm. The XGBoost algorithm is an iterative, ensemble approach to machine learning which creates  "weak leaner" decision trees in succession with each tree being focused on correcting the mistakes made in the previous model. As its name implies, XGBoost uses gradient descent to minimize the loss function as new models are added. XGBoost may be used for classification or regression tasks. 
+
+Because AWS is just using the open-source XGBoost algorithm it was not created for Sagemaker. As such, there are a few differences relative to other AWS machine learning tools. For one, XGBoost in Sagemaker is designed to take data in a CSV format as opposed to the AWS standard Protobuf format. Furthermore, models will be serialized / de-serialized using Pickle in Python and may even be used directly within the notebook - there is no requirement to deploy the model to training hosts or use Docker. Of course, for larger train jobs it is possible to refer to the XGBoost Docker image in ECR and deploy it to a fleet of training hosts. 
+
+XGBoost's limiting factor is the computing power rather than memory. As such XGBoost is not a GPU based algorithm and only uses CPU. An ideal instance type for training would be M4. 
 
 ## Seq2Seq
+AWS Seq2Seq takes a sequence of tokens (for example, text or audio) and uses RNN's and CNN's to output another sequence of tokens. Applications range from language translation to transforming speech to text. 
+
+AWS Seq2Seq expects data in the usual Protobus format, however, contrary to other algorithms it expects the data to be inputted in an integer format (as opposed to float). Input data should also be passed in as tokenized text files alongside a vocabulary file. Training a new model can a really long time, even on AWS, thus Seq2Seq provides a variety of pre-trained models which may be used for transfer learning. 
+
+As a deep learning algorithm, Seq2Seq is well suited for GPU instance (ideally P3 node) training. Unfortunately, Seq2Seq does not allow parallelized training across multiple machines, however, it can use multiple GPU's on the same machine.  
 
 ## DeepAR
+DeepAR is AWS's implementation of RNN's to forecast one-dimensional time series data (stock prices, weather, etc.). A A differentiating feature about DeepAR is that it allows you to train a single model over various time series at once. If you have multiple interdependent time series, DeepAR can learn from the relationships between those time series. As with all RNN's it has the ability to detect seasonality and frequencies. 
+
+DeepAR expects data in a JSON format (Parquet for best performance) with each record in the JSON file including a time stamp and a target. Optionally, the record may also contain a dynamic features. These dynamic features 
 
 ## BlazingText
 
