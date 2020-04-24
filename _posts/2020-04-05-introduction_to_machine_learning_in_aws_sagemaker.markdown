@@ -42,8 +42,17 @@ As a deep learning algorithm, Seq2Seq is well suited for GPU instance (ideally P
 ## DeepAR
 DeepAR is AWS's implementation of RNN's to forecast one-dimensional time series data (stock prices, weather, etc.). A A differentiating feature about DeepAR is that it allows you to train a single model over various time series at once. If you have multiple interdependent time series, DeepAR can learn from the relationships between those time series. As with all RNN's it has the ability to detect seasonality and frequencies. 
 
-DeepAR expects data in a JSON format (Parquet for best performance) with each record in the JSON file including a time stamp and a target. Optionally, the record may also contain a dynamic features. These dynamic features 
+DeepAR expects data in a JSON format (Parquet for best performance) with each record in the JSON file including a time stamp and a target. Optionally, the record may also contain a dynamic features (i.e. boolean value of whether or not promotion was applied when modeling sales) and categorical features.
+
+You modeling time series in DeepAR you should look at your entire time series you have available. The model will be trained on the entire time series minus the time points and the model will be tested on the entire time series. If possible, train on many related time series to fully take advantage of DeepAR. 
+
+DeepAR may use either a CPU or  GPU (CPU could actually work). 
 
 ## BlazingText
+Blazing Text is AWS's implementation of text classification (i.e. predicting labels for a sentence) and word2vector (i.e. find words that are similar to eachother, useful component of other NLP algorithms) algorithms. It should be noted here that Blazing Text should only be used for words and sentences, not entire documents. 
+
+Blazing Text's word2vector algorithm can work in multiple modes. One is "cbow" which stands for Continuous Bag of Words - this is just a bag of words with no particular order. Skip-gram and batch skip-grams are two modes where the order of the words is taken into account. 
+
+For cbow and skip-gram any single CPU instance for work. For batch skip-gram you have the option of using multiple CPU instances. For text classification on training sets larger than 2 GB a single GPU instance is recommended. 
 
 ## Object2Vector
