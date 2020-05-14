@@ -55,4 +55,3 @@ Blazing Text's word2vector algorithm can work in multiple modes. One is "cbow" w
 
 For cbow and skip-gram any single CPU instance for work. For batch skip-gram you have the option of using multiple CPU instances. For text classification on training sets larger than 2 GB a single GPU instance is recommended. 
 
-## Object2Vector
