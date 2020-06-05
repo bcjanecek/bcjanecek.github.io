@@ -21,11 +21,13 @@ Amazon S3 has several tiers (and price points) of storage options from S3 Standa
 Regarding security, S3 offers multiple encryption options for objects ranging from being fully managed and handled by AWS to 100% client side encryption. Access to data may be defined via user-based and bucket-based policies. 
 
 ## Amazon Kinesis
-Amazon Kinesis is AWS's answer to Apache Kafka and allows real-time "big data" analytics. Four services exist under the Kinesis umbrella - Kinesis Stream, Kinesis Analytics, Kinesis Firehose, and Kinesis Video Streams. The Kinesis architecture begins with incoming data (IoT, clickstreams, etc.) being unboarded into Kinesis Stream. Following this we may wish to perform real-time analytics on the data which is where Kinesis Analytics comes into play. Finally, Kinesis Firehose's purpose is to transfer data from Analytics to S3 buckets and / or Amazon Redshift (data warehouse) for deeper analytics or reporting. 
+Amazon Kinesis is AWS's answer to Apache Kafka and allows real-time "big data" analytics. Four services exist under the Kinesis umbrella - Kinesis Stream, Kinesis Analytics, Kinesis Firehose, and Kinesis Video Streams. The Kinesis architecture begins with incoming data (IoT, clickstreams, etc.) being unboarded into Kinesis Stream. Following this we may wish to perform real-time analytics on the data which is where Kinesis Analytics comes into play. 
+
+Finally, Kinesis Firehose's provides an easy solution for batching, encrypting, compressing, and streaming data into data lakes (i.e. S3 buckets) and analytics tools (i.e. Amazon Redshift). Contrary to Kinesis Streams, Firehose will scale on demand (up to gigabytes per second) without any manual provisioning. 
 
 ## AWS Glue 
 
-AWS Glue is an Extract Transform Load (ETL) application which contains crawlers capable of combing through massive amounts of structured and unstructured data (such as in an S3 data lake) and cataloging that metadata into a central directory. The crawlers work through your data, either on a schedule or on demand, and determine data schemas and partitions. Once all of your metadata is in the central repository it may be used  when querying from other applications like AWS Athena or Amazon Redshift. 
+AWS Glue is an Extract Transform Load (ETL) application which contains crawlers capable of combing through massive amounts of structured and unstructured data (for example, in a S3 data lake) and cataloging that metadata into a central directory. The crawlers work through your data, either on a schedule or on demand, and determine data schemas and partitions. Once all of your metadata is in the central repository it may be used  when querying from other applications such as AWS Athena or Amazon Redshift. 
 
 Glue ETL allows you to write ETL code using either Scala or Python and run jobs on a serverless Spark platform environment. This is very useful as it takes away the headache of having to worry about how to run your Spark cluster. 
 
@@ -34,13 +36,13 @@ We've already discussed S3, however, AWS contains multiple types of data stores 
 
 Amazon Redshift is a large-scale (petabyte), scalable data warehousing technology which allows for rapid analytics on large datasets. This capability is due to its Massively Parallel Processing (MPP) and columnar data storage design. Redshift must first be provisioned and is best used as an OLAP (Online Analytical Processing) tool. Data may be loaded from S3 or queryed directly from S3 using Redshift Spectrum. 
 
-Amazon RDS / Aurora are similar to Redshift, however, their design is row-based and they are designed for Online Transaction Processing (OLTP). Servers must be provisioned in advance. RDS may be used if you wish to store data regarding your model for exports, however, it will not be used directly for data analytics. 
+Amazon RDS / Aurora are similar to Redshift, however, their design is row-based and they are designed for Online Transaction Processing (OLTP). Similary to Redshift, servers must be provisioned in advance. RDS may be used if you wish to store data regarding your model for exports, however, it will not be used directly for data analytics. 
 
 DynamaDB is Amazon's NoSQL technology which supports key-value pair and document data structures. For data scientist and machine learning engineers on AWS, DynamoDB is a very useful place to store a machine learning model which must be served by an application. 
 
 ## AWS Data Pipeline
 
-AWS Data Pipeline is an ETL service used to move data from one location to another. Data Pipeline is used to *manage* the ETL tasks - the actual ETL will be performed within an EC2 instance which is managed by Data Pipeline. For example, Data Pipeline could be used if you wish to perform some analytics in Sagemaker on data stored in DynamoDB or RDS, In this case we could execute Data Pipeline which would create an EC2 instance which would move the data to an S3 bucket. Data Pipeline is here to orchestrate the movement of data. 
+AWS Data Pipeline is an ETL service used to move data from one location to another. Data Pipeline is used to *manage* the ETL tasks - the actual ETL will be performed within an EC2 instance which is managed by Data Pipeline. For example, Data Pipeline could be used if you wish to perform some analytics in Sagemaker on data stored in DynamoDB or RDS, In this case we could execute Data Pipeline which would create an EC2 instance which would move the data to an S3 bucket. Data Pipeline is here to *orchestrate* the flow of data. 
 
 Compared to Glue ETL, Data Pipeline gives you more control over the environment and resources used to run the code. 
 
