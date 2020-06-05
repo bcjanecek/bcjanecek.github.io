@@ -34,8 +34,10 @@ Compenents of Spark include the Spark Core, and the libraries built on top of it
 
 Spark Streaming ingests data in mini batches and is able to utilze the same application code as that used for batch jobs. Spark Streaming supports data ingestion from multiple sources including Twitter and Apache Kafta. Spark Streaming may also be integrated with Amazon Kinesis. 
 
-Spark MLLib offers many common machine learning algorithms available - all implemented in a distributed and scalable fashion. This allows us to process massive datasets and train machine learning models across an entire cluster. Furthermore, Spark MLLib may be integrated with Amazon Sagemaker. 
+Spark MLLib offers many common machine learning algorithms available - all implemented in a distributed and scalable fashion. This allows us to process massive datasets and train machine learning models across an entire cluster. Furthermore, Spark MLLib may be integrated with Amazon Sagemaker. However, Spark MLLib is likely going to become deprecated in the next major Spark release. 
 
-Finally, a conversation about Spark would be incomplete without talking about Zepellin. Zepellin allows you to execute Spark code in an interactive notebook environment. Zepellin allows you to directly execute SQL queries and visualize data making it an excellent tool for data scientists. 
+More recently, Spark ML has been deployed as the higher-level  machine learning API being built on top of Spark DataFrames. It is rumoured that Spark ML was built using Scikit Learn as inspiration which makes it a very intuitive place to start machine learning with big data. 
+
+Finally, a conversation about Spark would be incomplete without talking about Zepellin. Zepellin allows you to execute Spark code in an interactive notebook environment. Zepellin allows you to directly execute SQL queries and visualize data making data scientists feel at home just as we do with Jupyter Notebooks. 
 
 
